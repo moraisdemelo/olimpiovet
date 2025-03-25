@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OlimpioVet - Clínica e Cirurgia Especializada</title>
+    <style>
+        /* CSS ORIGINAL - NÃO ALTERADO */
+        :root {
+            --primary-color: #2a5c8d;
+            --secondary-color: #4a8cbf;
+            --light-color: #f8f9fa;
+            --dark-color: #343a40;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: var(--dark-color);
+            background-color: var(--light-color);
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            background-color: var(--white);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo {
+            height: 80px;
+        }
+
+        .clinic-info h1 {
+            margin: 0;
+            color: var(--primary-color);
+            font-size: 1.8rem;
+        }
+
+        .clinic-info p {
+            margin: 0;
+            color: var(--secondary-color);
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        .navbar ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+
+        .navbar a {
+            text-decoration: none;
+            color: var(--dark-color);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .navbar a:hover {
+            color: var(--primary-color);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .receituario-section {
+            background-color: var(--white);
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            padding: 2rem;
+        }
+
+        .receituario-options {
+            display: flex;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .receituario-options button {
+            padding: 0.5rem 1.5rem;
+            border: none;
+            background: none;
+            cursor: pointer;
+            font-size: 1rem;
+            position: relative;
+            color: var(--dark-color);
+        }
+
+        .receituario-options button.active {
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        .receituario-options button.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--primary-color);
+        }
+
+        .receituario-form {
+            margin-top: 1.5rem;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .form-group {
+            flex: 1;
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        .form-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .form-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #eee;
+        }
+
+        .veterinario-info {
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+
+        .submit-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.75rem 2rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+        }
+
+        .submit-btn:hover {
+            background-color: var(--secondary-color);
+        }
+
+        .footer {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .contact-info {
+            margin-bottom: 1rem;
+        }
+
+        .contact-info p {
+            margin: 0.3rem 0;
+        }
+
+        .address p {
+            margin: 0;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                padding: 1rem;
+            }
+            
+            .navbar ul {
+                margin-top: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- HTML ORIGINAL - NÃO ALTERADO -->
+    <header class="header">
+        <div class="logo-container">
+            <img src="LOGO_OLIMPIO_VET_azul.png" alt="OlimpioVet" class="logo">
+            <div class="clinic-info">
+                <h1>OlimpioVet</h1>
+                <p>CLÍNICA E CIRURGIA ESPECIALIZADA</p>
+            </div>
+        </div>
+        <nav class="navbar">
+            <ul class="nav-links">
+                <li><a href="#">Início</a></li>
+                <li><a href="#">Serviços</a></li>
+                <li><a href="#">Receituários</a></li>
+                <li><a href="#">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="receituario-section">
+            <h2>Gerar Receituário</h2>
+            <div class="receituario-options">
+                <button id="btnSimples" class="active">Receituário Simples</button>
+                <button id="btnEspecial">Controle Especial</button>
+            </div>
+
+            <form id="receituarioForm" class="receituario-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="tipoReceita">Tipo de Receita:</label>
+                        <select id="tipoReceita" required>
+                            <option value="simples">Receituário Simples</option>
+                            <option value="especial">Controle Especial</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="nomeTutor">Nome do Tutor:</label>
+                        <input type="text" id="nomeTutor" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="nomeAnimal">Nome do Animal:</label>
+                        <input type="text" id="nomeAnimal" required>
+                    </div>
+                </div>
+
+                <div id="camposEspeciais" class="hidden">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="especie">Espécie:</label>
+                            <input type="text" id="especie">
+                        </div>
+                        <div class="form-group">
+                            <label for="raca">Raça:</label>
+                            <input type="text" id="raca">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="endereco">Endereço:</label>
+                            <input type="text" id="endereco">
+                        </div>
+                        <div class="form-group">
+                            <label for="peso">Peso:</label>
+                            <input type="text" id="peso">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="idade">Idade:</label>
+                            <input type="text" id="idade">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="prescricao">Prescrição:</label>
+                    <textarea id="prescricao" rows="5" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="recomendacoes">Recomendações:</label>
+                    <textarea id="recomendacoes" rows="3"></textarea>
+                </div>
+
+                <div class="form-footer">
+                    <div class="veterinario-info">
+                        <p>Gevaelsom de Oliveira Olimpio</p>
+                        <p>CRMV-MA 2275</p>
+                    </div>
+                    <button type="submit" class="submit-btn">Gerar Receituário</button>
+                </div>
+            </form>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="contact-info">
+            <p>(99) 99183-1725</p>
+            <p>olimpionvedvet@gmail.com</p>
+            <p>@olimpiovet</p>
+        </div>
+        <div class="address">
+            <p>Av. Getúlio Vargas 2128, Imperatriz - MA</p>
+        </div>
+    </footer>
+
+    <script>
+        // JavaScript MODIFICADO APENAS COM AS ALTERAÇÕES SOLICITADAS
+        document.addEventListener('DOMContentLoaded', function() {
+            const tipoReceita = document.getElementById('tipoReceita');
+            const camposEspeciais = document.getElementById('camposEspeciais');
+            const btnSimples = document.getElementById('btnSimples');
+            const btnEspecial = document.getElementById('btnEspecial');
+            const receituarioForm = document.getElementById('receituarioForm');
+
+            // Mostrar/ocultar campos especiais baseado na seleção
+            function toggleCamposEspeciais() {
+                if (tipoReceita.value === 'especial') {
+                    camposEspeciais.classList.remove('hidden');
+                } else {
+                    camposEspeciais.classList.add('hidden');
+                }
+            }
+
+            // Event listeners
+            tipoReceita.addEventListener('change', toggleCamposEspeciais);
+            
+            btnSimples.addEventListener('click', function(e) {
+                e.preventDefault();
+                tipoReceita.value = 'simples';
+                toggleCamposEspeciais();
+                btnSimples.classList.add('active');
+                btnEspecial.classList.remove('active');
+            });
+            
+            btnEspecial.addEventListener('click', function(e) {
+                e.preventDefault();
+                tipoReceita.value = 'especial';
+                toggleCamposEspeciais();
+                btnEspecial.classList.add('active');
+                btnSimples.classList.remove('active');
+            });
+
+            // Gerar conteúdo para impressão com marca d'água
+            function gerarConteudoParaImpressao() {
+                const today = new Date();
+                const dataFormatada = today.toLocaleDateString('pt-BR');
+                
+                let conteudo = `
+                    <!DOCTYPE html>
+                    <html>
+                    <head>
+                        <title>Receituário OlimpioVet</title>
+                        <style>
+                            @page {
+                                size: A4;
+                                margin: 1cm;
+                            }
+                            body {
+                                font-family: Arial, sans-serif;
+                                font-size: 12px;
+                                line-height: 1.4;
+                                position: relative;
+                            }
+                            .watermark {
+                                position: fixed;
+                                top: 50%;
+                                left: 50%;
+                                transform: translate(-50%, -50%) rotate(-45deg);
+                                opacity: 0.1;
+                                z-index: -1;
+                            }
+                            .watermark img {
+                                width: 400px;
+                                height: auto;
+                            }
+                            .header {
+                                display: flex;
+                                align-items: center;
+                                margin-bottom: 15px;
+                            }
+                            .logo {
+                                height: 60px;
+                                margin-right: 20px;
+                            }
+                            .clinic-name {
+                                color: #2a5c8d;
+                                font-size: 18px;
+                                margin: 0;
+                            }
+                            .clinic-specialty {
+                                color: #4a8cbf;
+                                font-size: 14px;
+                                margin: 5px 0 0 0;
+                                font-weight: bold;
+                            }
+                            .divider {
+                                border-top: 2px solid #2a5c8d;
+                                margin: 15px 0;
+                            }
+                            .vet-info {
+                                margin-bottom: 20px;
+                                font-size: 13px;
+                            }
+                            .section {
+                                margin-bottom: 20px;
+                            }
+                            .section-title {
+                                color: #2a5c8d;
+                                font-size: 16px;
+                                margin-bottom: 10px;
+                                border-bottom: 1px solid #eee;
+                                padding-bottom: 5px;
+                            }
+                            .row {
+                                display: flex;
+                                margin-bottom: 8px;
+                                font-size: 13px;
+                            }
+                            .label {
+                                font-weight: bold;
+                                min-width: 100px;
+                            }
+                            .content {
+                                white-space: pre-line;
+                            }
+                            .footer {
+                                margin-top: 40px;
+                                text-align: center;
+                            }
+                            .signature-line {
+                                border-top: 1px solid #000;
+                                width: 200px;
+                                margin: 20px auto 5px auto;
+                            }
+                            .vet-name {
+                                font-weight: bold;
+                                margin-top: 5px;
+                            }
+                            .crmv {
+                                font-size: 12px;
+                            }
+                            .date {
+                                margin-bottom: 20px;
+                            }
+                        </style>
+                    </head>
+                    <body>
+                        <div class="watermark">
+                            <img src="ICONE_OLIMPIO_VET_azul.png" alt="Marca d'água">
+                        </div>
+                        
+                        <div class="header">
+                            <img src="LOGO_OLIMPIO_VET_azul.png" class="logo" alt="OlimpioVet">
+                            <div>
+                                <h1 class="clinic-name">OlimpioVet</h1>
+                                <p class="clinic-specialty">CLÍNICA E CIRURGIA ESPECIALIZADA</p>
+                            </div>
+                        </div>
+                        
+                        <div class="divider"></div>
+                        
+                        <div class="vet-info">
+                            <p>Gevaelsom de Oliveira Olimpio</p>
+                            <p>CRMV-MA 2275</p>
+                        </div>
+                        
+                        <div class="section">
+                            <h2 class="section-title">DADOS DO PACIENTE</h2>
+                            <div class="row">
+                                <span class="label">Tutor:</span>
+                                <span>${document.getElementById('nomeTutor').value}</span>
+                            </div>
+                            <div class="row">
+                                <span class="label">Animal:</span>
+                                <span>${document.getElementById('nomeAnimal').value}</span>
+                            </div>
+                `;
+
+                // Adicionar campos especiais se necessário
+                if (tipoReceita.value === 'especial') {
+                    conteudo += `
+                            <div class="row">
+                                <span class="label">Espécie:</span>
+                                <span>${document.getElementById('especie').value}</span>
+                            </div>
+                            <div class="row">
+                                <span class="label">Raça:</span>
+                                <span>${document.getElementById('raca').value}</span>
+                            </div>
+                            <div class="row">
+                                <span class="label">Endereço:</span>
+                                <span>${document.getElementById('endereco').value}</span>
+                            </div>
+                            <div class="row">
+                                <span class="label">Peso:</span>
+                                <span>${document.getElementById('peso').value}</span>
+                                <span style="margin-left: 30px;" class="label">Idade:</span>
+                                <span>${document.getElementById('idade').value}</span>
+                            </div>
+                    `;
+                }
+
+                conteudo += `
+                        </div>
+                        
+                        <div class="section">
+                            <h2 class="section-title">PRESCRIÇÃO</h2>
+                            <div class="content">${document.getElementById('prescricao').value.replace(/\n/g, '<br>')}</div>
+                        </div>
+                        
+                        <div class="section">
+                            <h2 class="section-title">RECOMENDAÇÕES</h2>
+                            <div class="content">${document.getElementById('recomendacoes').value.replace(/\n/g, '<br>')}</div>
+                        </div>
+                        
+                        <div class="footer">
+                            <div class="date">
+                                <span class="label">Data:</span>
+                                <span>${dataFormatada}</span>
+                            </div>
+                            <div class="signature">
+                                <div class="signature-line"></div>
+                                <p class="vet-name">Gevaelsom de Oliveira Olimpio</p>
+                                <p class="crmv">CRMV-MA 2275</p>
+                            </div>
+                        </div>
+                    </body>
+                    </html>
+                `;
+
+                return conteudo;
+            }
+
+            // Compartilhar receituário via WhatsApp
+            function compartilharReceituario() {
+                const nomeTutor = document.getElementById('nomeTutor').value;
+                const nomeAnimal = document.getElementById('nomeAnimal').value;
+                const prescricao = document.getElementById('prescricao').value;
+                const recomendacoes = document.getElementById('recomendacoes').value;
+                
+                let texto = `*Receituário Veterinário - ${nomeAnimal}*\n\n`;
+                texto += `*Tutor:* ${nomeTutor}\n`;
+                texto += `*Animal:* ${nomeAnimal}\n`;
+                
+                if (tipoReceita.value === 'especial') {
+                    texto += `*Espécie:* ${document.getElementById('especie').value}\n`;
+                    texto += `*Raça:* ${document.getElementById('raca').value}\n`;
+                    texto += `*Peso:* ${document.getElementById('peso').value}\n`;
+                    texto += `*Idade:* ${document.getElementById('idade').value}\n\n`;
+                }
+                
+                texto += `*Prescrição:*\n${prescricao}\n\n`;
+                texto += `*Recomendações:*\n${recomendacoes || 'Nenhuma recomendação adicional'}\n\n`;
+                texto += `_Gevaelsom de Oliveira Olimpio_\n_CRMV-MA 2275_`;
+                
+                const url = `https://wa.me/?text=${encodeURIComponent(texto)}`;
+                window.open(url, '_blank');
+            }
+
+            // Adicionar botão de compartilhamento
+            const formFooter = document.querySelector('.form-footer');
+            const shareBtn = document.createElement('button');
+            shareBtn.className = 'submit-btn';
+            shareBtn.style.marginLeft = '10px';
+            shareBtn.style.backgroundColor = '#25D366';
+            shareBtn.innerHTML = '<i class="fas fa-share-alt"></i> Compartilhar';
+            shareBtn.onclick = compartilharReceituario;
+            formFooter.appendChild(shareBtn);
+
+            // Gerar receituário para impressão
+            receituarioForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Gerar conteúdo HTML para impressão
+                const conteudoImpressao = gerarConteudoParaImpressao();
+                
+                // Abrir nova janela para impressão
+                const janelaImpressao = window.open('', '_blank');
+                janelaImpressao.document.open();
+                janelaImpressao.document.write(conteudoImpressao);
+                janelaImpressao.document.close();
+                
+                // Esperar o conteúdo carregar e acionar impressão
+                setTimeout(() => {
+                    janelaImpressao.print();
+                }, 500);
+                
+                // Limpar formulário
+                receituarioForm.reset();
+                tipoReceita.value = 'simples';
+                toggleCamposEspeciais();
+                btnSimples.classList.add('active');
+                btnEspecial.classList.remove('active');
+            });
+
+            // Inicializar
+            toggleCamposEspeciais();
+        });
+    </script>
+</body>
+</html>
