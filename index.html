@@ -4,32 +4,49 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OlimpioVet - Clínica e Cirurgia Especializada</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* CSS ORIGINAL - NÃO ALTERADO */
         :root {
-            --primary-color: #2a5c8d;
-            --secondary-color: #4a8cbf;
-            --light-color: #f8f9fa;
-            --dark-color: #343a40;
-            --white: #ffffff;
+            --primary: #2a5c8d;
+            --primary-light: #4a8cbf;
+            --secondary: #f8f9fa;
+            --dark: #343a40;
+            --light: #ffffff;
+            --success: #28a745;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
-            color: var(--dark-color);
-            background-color: var(--light-color);
-            margin: 0;
-            padding: 0;
+            color: var(--dark);
+            background-color: #f5f7fa;
         }
 
         .header {
-            background-color: var(--white);
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            padding: 1rem 2rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: var(--light);
+            padding: 1.5rem 2rem;
+            box-shadow: var(--box-shadow);
+            position: relative;
+            z-index: 100;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
         }
 
         .logo-container {
@@ -39,20 +56,23 @@
         }
 
         .logo {
-            height: 80px;
+            height: 70px;
+            width: auto;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
         }
 
         .clinic-info h1 {
             margin: 0;
-            color: var(--primary-color);
             font-size: 1.8rem;
+            font-weight: 700;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
 
         .clinic-info p {
-            margin: 0;
-            color: var(--secondary-color);
+            margin: 0.3rem 0 0;
             font-size: 0.9rem;
-            font-weight: bold;
+            font-weight: 500;
+            opacity: 0.9;
         }
 
         .navbar ul {
@@ -62,14 +82,41 @@
         }
 
         .navbar a {
+            color: var(--light);
             text-decoration: none;
-            color: var(--dark-color);
             font-weight: 500;
-            transition: color 0.3s;
+            padding: 0.5rem 0;
+            position: relative;
+            transition: var(--transition);
+            opacity: 0.9;
         }
 
         .navbar a:hover {
-            color: var(--primary-color);
+            opacity: 1;
+        }
+
+        .navbar a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--light);
+            transition: var(--transition);
+        }
+
+        .navbar a:hover::after {
+            width: 100%;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--light);
+            font-size: 1.5rem;
+            cursor: pointer;
         }
 
         .container {
@@ -79,31 +126,64 @@
         }
 
         .receituario-section {
-            background-color: var(--white);
-            border-radius: 8px;
-            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            background-color: var(--light);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
             padding: 2rem;
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .receituario-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary), var(--primary-light));
+        }
+
+        .receituario-section h2 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .receituario-section h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--primary-light);
+            border-radius: 3px;
         }
 
         .receituario-options {
             display: flex;
             margin-bottom: 1.5rem;
-            border-bottom: 1px solid #ddd;
+            border-bottom: 1px solid #eee;
         }
 
         .receituario-options button {
-            padding: 0.5rem 1.5rem;
+            padding: 0.7rem 1.5rem;
             border: none;
             background: none;
             cursor: pointer;
             font-size: 1rem;
             position: relative;
-            color: var(--dark-color);
+            color: var(--dark);
+            font-weight: 500;
+            transition: var(--transition);
         }
 
         .receituario-options button.active {
-            color: var(--primary-color);
-            font-weight: bold;
+            color: var(--primary);
         }
 
         .receituario-options button.active::after {
@@ -112,8 +192,9 @@
             bottom: -1px;
             left: 0;
             width: 100%;
-            height: 2px;
-            background-color: var(--primary-color);
+            height: 3px;
+            background-color: var(--primary);
+            border-radius: 3px 3px 0 0;
         }
 
         .receituario-form {
@@ -124,31 +205,45 @@
             display: flex;
             gap: 1.5rem;
             margin-bottom: 1rem;
+            flex-wrap: wrap;
         }
 
         .form-group {
             flex: 1;
             margin-bottom: 1rem;
+            min-width: 200px;
         }
 
         .form-group label {
             display: block;
             margin-bottom: 0.5rem;
             font-weight: 500;
+            color: var(--dark);
+            font-size: 0.95rem;
         }
 
         .form-group input,
         .form-group select,
         .form-group textarea {
             width: 100%;
-            padding: 0.5rem;
+            padding: 0.8rem 1rem;
             border: 1px solid #ddd;
-            border-radius: 4px;
+            border-radius: var(--border-radius);
             font-size: 1rem;
+            transition: var(--transition);
+            background-color: var(--secondary);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-light);
+            box-shadow: 0 0 0 3px rgba(42, 92, 141, 0.1);
         }
 
         .form-group textarea {
-            min-height: 100px;
+            min-height: 120px;
             resize: vertical;
         }
 
@@ -163,99 +258,381 @@
             margin-top: 2rem;
             padding-top: 1.5rem;
             border-top: 1px solid #eee;
+            flex-wrap: wrap;
+            gap: 1rem;
         }
 
         .veterinario-info {
-            color: var(--primary-color);
+            color: var(--primary);
             font-weight: 500;
+            font-size: 0.95rem;
         }
 
-        .submit-btn {
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            padding: 0.75rem 2rem;
-            border-radius: 4px;
+        .veterinario-info p:first-child {
+            font-weight: 600;
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.8rem 1.8rem;
+            border-radius: var(--border-radius);
             cursor: pointer;
             font-size: 1rem;
-            transition: background-color 0.3s;
+            font-weight: 500;
+            transition: var(--transition);
+            border: none;
         }
 
-        .submit-btn:hover {
-            background-color: var(--secondary-color);
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-light);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(42, 92, 141, 0.2);
+        }
+
+        .btn-success {
+            background-color: var(--success);
+            color: white;
+        }
+
+        .btn-success:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(40, 167, 69, 0.2);
+        }
+
+        .btn:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
         }
 
         .footer {
-            background-color: var(--primary-color);
-            color: var(--white);
+            background-color: var(--dark);
+            color: var(--light);
             padding: 2rem;
             text-align: center;
         }
 
-        .contact-info {
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            text-align: left;
+        }
+
+        .footer-column h3 {
+            color: var(--light);
             margin-bottom: 1rem;
+            font-size: 1.2rem;
+            position: relative;
+            padding-bottom: 0.5rem;
         }
 
-        .contact-info p {
-            margin: 0.3rem 0;
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--primary-light);
         }
 
-        .address p {
-            margin: 0;
+        .contact-info p, .address p {
+            margin: 0.5rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        .contact-info a, .address a {
+            color: var(--light);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .contact-info a:hover, .address a:hover {
+            color: var(--primary-light);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            color: var(--light);
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            color: var(--primary-light);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
             font-size: 0.9rem;
+            opacity: 0.7;
         }
 
-        @media (max-width: 768px) {
-            .header {
+        /* Estilos para impressão */
+        @media print {
+            body {
+                font-size: 12pt;
+                line-height: 1.5;
+                background: none;
+            }
+            
+            .print-header {
+                display: flex;
+                align-items: center;
+                margin-bottom: 15pt;
+            }
+            
+            .print-logo {
+                height: 50pt;
+                margin-right: 15pt;
+            }
+            
+            .print-title {
+                font-size: 16pt;
+                color: #2a5c8d;
+                margin: 0;
+            }
+            
+            .print-subtitle {
+                font-size: 12pt;
+                color: #4a8cbf;
+                margin: 3pt 0 0 0;
+                font-weight: bold;
+            }
+            
+            .print-divider {
+                border-top: 1pt solid #2a5c8d;
+                margin: 10pt 0;
+            }
+            
+            .print-vet-info {
+                font-size: 11pt;
+                margin-bottom: 15pt;
+            }
+            
+            .print-section {
+                margin-bottom: 15pt;
+            }
+            
+            .print-section h2 {
+                font-size: 14pt;
+                color: #2a5c8d;
+                margin-bottom: 8pt;
+                border-bottom: 1pt solid #eee;
+                padding-bottom: 3pt;
+            }
+            
+            .print-row {
+                display: flex;
+                margin-bottom: 5pt;
+                font-size: 11pt;
+            }
+            
+            .print-label {
+                font-weight: bold;
+                min-width: 80pt;
+                display: inline-block;
+            }
+            
+            .print-content {
+                font-size: 11pt;
+                white-space: pre-line;
+                line-height: 1.5;
+            }
+            
+            .print-footer {
+                margin-top: 30pt;
+                padding-top: 15pt;
+                border-top: 1pt solid #eee;
+                display: flex;
                 flex-direction: column;
-                padding: 1rem;
+                align-items: center;
+            }
+            
+            .print-date {
+                font-size: 11pt;
+                margin-bottom: 15pt;
+            }
+            
+            .print-signature {
+                text-align: center;
+                margin-top: 20pt;
+            }
+            
+            .signature-line {
+                border-top: 1pt solid #000;
+                width: 150pt;
+                margin: 0 auto 5pt auto;
+            }
+            
+            .print-signature p {
+                margin: 0;
+                font-size: 10pt;
+            }
+            
+            .vet-name {
+                font-weight: bold;
+                margin-top: 5pt;
+            }
+            
+            .crmv {
+                font-size: 10pt;
+            }
+
+            .watermark {
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%) rotate(-45deg);
+                opacity: 0.1;
+                z-index: -1;
+            }
+            
+            .watermark img {
+                width: 400pt;
+                height: auto;
+            }
+        }
+
+        /* Responsividade */
+        @media (max-width: 992px) {
+            .header-container {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+            
+            .navbar {
+                width: 100%;
             }
             
             .navbar ul {
-                margin-top: 1rem;
-                flex-wrap: wrap;
-                justify-content: center;
+                flex-direction: column;
+                gap: 0;
+                width: 100%;
+                display: none;
+            }
+            
+            .navbar ul.active {
+                display: flex;
+            }
+            
+            .navbar li {
+                padding: 0.7rem 0;
+                border-bottom: 1px solid rgba(255,255,255,0.1);
+            }
+            
+            .menu-toggle {
+                display: block;
+                position: absolute;
+                right: 2rem;
+                top: 1.5rem;
+            }
+            
+            .container {
+                padding: 0 1.5rem;
             }
             
             .form-row {
                 flex-direction: column;
                 gap: 0;
             }
+            
+            .form-group {
+                min-width: 100%;
+            }
+            
+            .form-footer {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .form-actions {
+                width: 100%;
+                flex-direction: column;
+                gap: 0.8rem;
+            }
+            
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        @media (min-width: 993px) and (max-width: 1200px) {
+            .container {
+                padding: 0 2rem;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- HTML ORIGINAL - NÃO ALTERADO -->
     <header class="header">
-        <div class="logo-container">
-            <img src="LOGO_OLIMPIO_VET_azul.png" alt="OlimpioVet" class="logo">
-            <div class="clinic-info">
-                <h1>OlimpioVet</h1>
-                <p>CLÍNICA E CIRURGIA ESPECIALIZADA</p>
+        <div class="header-container">
+            <div class="logo-container">
+                <img src="LOGO_OLIMPIO_VET_azul.png" alt="OlimpioVet" class="logo">
+                <div class="clinic-info">
+                    <h1>OlimpioVet</h1>
+                    <p>CLÍNICA E CIRURGIA ESPECIALIZADA</p>
+                </div>
             </div>
+            
+            <nav class="navbar">
+                <ul class="nav-links">
+                    <li><a href="#"><i class="fas fa-home"></i> Início</a></li>
+                    <li><a href="#"><i class="fas fa-hand-holding-medical"></i> Serviços</a></li>
+                    <li><a href="#"><i class="fas fa-file-prescription"></i> Receituários</a></li>
+                    <li><a href="#"><i class="fas fa-envelope"></i> Contato</a></li>
+                </ul>
+                <button class="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
         </div>
-        <nav class="navbar">
-            <ul class="nav-links">
-                <li><a href="#">Início</a></li>
-                <li><a href="#">Serviços</a></li>
-                <li><a href="#">Receituários</a></li>
-                <li><a href="#">Contato</a></li>
-            </ul>
-        </nav>
     </header>
 
     <main class="container">
         <section class="receituario-section">
-            <h2>Gerar Receituário</h2>
+            <h2><i class="fas fa-file-medical"></i> Gerar Receituário</h2>
             <div class="receituario-options">
-                <button id="btnSimples" class="active">Receituário Simples</button>
-                <button id="btnEspecial">Controle Especial</button>
+                <button id="btnSimples" class="active"><i class="fas fa-file-alt"></i> Receituário Simples</button>
+                <button id="btnEspecial"><i class="fas fa-file-medical-alt"></i> Controle Especial</button>
             </div>
 
             <form id="receituarioForm" class="receituario-form">
                 <div class="form-row">
                     <div class="form-group">
-                        <label for="tipoReceita">Tipo de Receita:</label>
+                        <label for="tipoReceita"><i class="fas fa-tag"></i> Tipo de Receita:</label>
                         <select id="tipoReceita" required>
                             <option value="simples">Receituário Simples</option>
                             <option value="especial">Controle Especial</option>
@@ -265,11 +642,11 @@
 
                 <div class="form-row">
                     <div class="form-group">
-                        <label for="nomeTutor">Nome do Tutor:</label>
+                        <label for="nomeTutor"><i class="fas fa-user"></i> Nome do Tutor:</label>
                         <input type="text" id="nomeTutor" required>
                     </div>
                     <div class="form-group">
-                        <label for="nomeAnimal">Nome do Animal:</label>
+                        <label for="nomeAnimal"><i class="fas fa-paw"></i> Nome do Animal:</label>
                         <input type="text" id="nomeAnimal" required>
                     </div>
                 </div>
@@ -277,74 +654,107 @@
                 <div id="camposEspeciais" class="hidden">
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="especie">Espécie:</label>
+                            <label for="especie"><i class="fas fa-dog"></i> Espécie:</label>
                             <input type="text" id="especie">
                         </div>
                         <div class="form-group">
-                            <label for="raca">Raça:</label>
+                            <label for="raca"><i class="fas fa-dna"></i> Raça:</label>
                             <input type="text" id="raca">
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="endereco">Endereço:</label>
+                            <label for="endereco"><i class="fas fa-map-marker-alt"></i> Endereço:</label>
                             <input type="text" id="endereco">
                         </div>
                         <div class="form-group">
-                            <label for="peso">Peso:</label>
+                            <label for="peso"><i class="fas fa-weight"></i> Peso:</label>
                             <input type="text" id="peso">
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="idade">Idade:</label>
+                            <label for="idade"><i class="fas fa-birthday-cake"></i> Idade:</label>
                             <input type="text" id="idade">
                         </div>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="prescricao">Prescrição:</label>
+                    <label for="prescricao"><i class="fas fa-prescription-bottle-alt"></i> Prescrição:</label>
                     <textarea id="prescricao" rows="5" required></textarea>
                 </div>
 
                 <div class="form-group">
-                    <label for="recomendacoes">Recomendações:</label>
+                    <label for="recomendacoes"><i class="fas fa-heart"></i> Recomendações:</label>
                     <textarea id="recomendacoes" rows="3"></textarea>
                 </div>
 
                 <div class="form-footer">
                     <div class="veterinario-info">
-                        <p>Gevaelsom de Oliveira Olimpio</p>
-                        <p>CRMV-MA 2275</p>
+                        <p><i class="fas fa-user-md"></i> Gevaelsom de Oliveira Olimpio</p>
+                        <p><i class="fas fa-id-card"></i> CRMV-MA 2275</p>
                     </div>
-                    <button type="submit" class="submit-btn">Gerar Receituário</button>
+                    <div class="form-actions">
+                        <button type="button" id="btnShare" class="btn btn-success" disabled>
+                            <i class="fas fa-share-alt"></i> Compartilhar com Tutor
+                        </button>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-file-pdf"></i> Gerar Receituário
+                        </button>
+                    </div>
                 </div>
             </form>
         </section>
     </main>
 
     <footer class="footer">
-        <div class="contact-info">
-            <p>(99) 99183-1725</p>
-            <p>olimpionvedvet@gmail.com</p>
-            <p>@olimpiovet</p>
+        <div class="footer-container">
+            <div class="footer-column">
+                <h3>Contato</h3>
+                <div class="contact-info">
+                    <p><i class="fas fa-phone"></i> <a href="tel:99991831725">(99) 99183-1725</a></p>
+                    <p><i class="fas fa-envelope"></i> <a href="mailto:olimpionvedvet@gmail.com">olimpionvedvet@gmail.com</a></p>
+                    <p><i class="fas fa-clock"></i> Seg-Sex: 8h às 18h | Sáb: 8h às 12h</p>
+                </div>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Endereço</h3>
+                <div class="address">
+                    <p><i class="fas fa-map-marker-alt"></i> Av. Getúlio Vargas 2128</p>
+                    <p><i class="fas fa-city"></i> Imperatriz - MA</p>
+                </div>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Redes Sociais</h3>
+                <div class="social-links">
+                    <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="#" target="_blank"><i class="fab fa-facebook"></i></a>
+                    <a href="#" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
         </div>
-        <div class="address">
-            <p>Av. Getúlio Vargas 2128, Imperatriz - MA</p>
+        
+        <div class="copyright">
+            <p>&copy; 2023 OlimpioVet - Clínica e Cirurgia Especializada. Todos os direitos reservados.</p>
         </div>
     </footer>
 
     <script>
-        // JavaScript MODIFICADO APENAS COM AS ALTERAÇÕES SOLICITADAS
         document.addEventListener('DOMContentLoaded', function() {
+            // Elementos do DOM
             const tipoReceita = document.getElementById('tipoReceita');
             const camposEspeciais = document.getElementById('camposEspeciais');
             const btnSimples = document.getElementById('btnSimples');
             const btnEspecial = document.getElementById('btnEspecial');
             const receituarioForm = document.getElementById('receituarioForm');
+            const btnShare = document.getElementById('btnShare');
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navLinks = document.querySelector('.nav-links');
 
-            // Mostrar/ocultar campos especiais baseado na seleção
+            // Mostrar/ocultar campos especiais
             function toggleCamposEspeciais() {
                 if (tipoReceita.value === 'especial') {
                     camposEspeciais.classList.remove('hidden');
@@ -352,6 +762,19 @@
                     camposEspeciais.classList.add('hidden');
                 }
             }
+
+            // Habilitar/desabilitar botão de compartilhamento
+            function toggleShareButton() {
+                const formValid = receituarioForm.checkValidity();
+                btnShare.disabled = !formValid;
+            }
+
+            // Menu mobile
+            menuToggle.addEventListener('click', function() {
+                navLinks.classList.toggle('active');
+                this.innerHTML = navLinks.classList.contains('active') ? 
+                    '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+            });
 
             // Event listeners
             tipoReceita.addEventListener('change', toggleCamposEspeciais);
@@ -372,6 +795,9 @@
                 btnSimples.classList.remove('active');
             });
 
+            // Validar formulário para habilitar compartilhamento
+            receituarioForm.addEventListener('input', toggleShareButton);
+
             // Gerar conteúdo para impressão com marca d'água
             function gerarConteudoParaImpressao() {
                 const today = new Date();
@@ -389,9 +815,10 @@
                             }
                             body {
                                 font-family: Arial, sans-serif;
-                                font-size: 12px;
-                                line-height: 1.4;
+                                font-size: 12pt;
+                                line-height: 1.5;
                                 position: relative;
+                                padding: 1.5cm;
                             }
                             .watermark {
                                 position: fixed;
@@ -408,20 +835,21 @@
                             .header {
                                 display: flex;
                                 align-items: center;
-                                margin-bottom: 15px;
+                                margin-bottom: 20px;
                             }
                             .logo {
-                                height: 60px;
+                                height: 70px;
                                 margin-right: 20px;
                             }
                             .clinic-name {
                                 color: #2a5c8d;
-                                font-size: 18px;
+                                font-size: 20pt;
                                 margin: 0;
+                                font-weight: bold;
                             }
                             .clinic-specialty {
                                 color: #4a8cbf;
-                                font-size: 14px;
+                                font-size: 14pt;
                                 margin: 5px 0 0 0;
                                 font-weight: bold;
                             }
@@ -431,22 +859,22 @@
                             }
                             .vet-info {
                                 margin-bottom: 20px;
-                                font-size: 13px;
+                                font-size: 12pt;
                             }
                             .section {
                                 margin-bottom: 20px;
                             }
                             .section-title {
                                 color: #2a5c8d;
-                                font-size: 16px;
+                                font-size: 16pt;
                                 margin-bottom: 10px;
                                 border-bottom: 1px solid #eee;
                                 padding-bottom: 5px;
                             }
                             .row {
                                 display: flex;
-                                margin-bottom: 8px;
-                                font-size: 13px;
+                                margin-bottom: 10px;
+                                font-size: 12pt;
                             }
                             .label {
                                 font-weight: bold;
@@ -454,25 +882,36 @@
                             }
                             .content {
                                 white-space: pre-line;
+                                line-height: 1.6;
                             }
                             .footer {
                                 margin-top: 40px;
+                                padding-top: 20px;
+                                border-top: 1px solid #eee;
+                                font-size: 10pt;
+                                color: #666;
+                                text-align: center;
+                            }
+                            .signature-container {
+                                margin-top: 60px;
                                 text-align: center;
                             }
                             .signature-line {
                                 border-top: 1px solid #000;
-                                width: 200px;
-                                margin: 20px auto 5px auto;
+                                width: 250px;
+                                margin: 0 auto 10px auto;
                             }
                             .vet-name {
                                 font-weight: bold;
-                                margin-top: 5px;
+                                margin-top: 10px;
+                                font-size: 12pt;
                             }
                             .crmv {
-                                font-size: 12px;
+                                font-size: 11pt;
                             }
                             .date {
-                                margin-bottom: 20px;
+                                margin-bottom: 30px;
+                                font-size: 11pt;
                             }
                         </style>
                     </head>
@@ -545,7 +984,7 @@
                             <div class="content">${document.getElementById('recomendacoes').value.replace(/\n/g, '<br>')}</div>
                         </div>
                         
-                        <div class="footer">
+                        <div class="signature-container">
                             <div class="date">
                                 <span class="label">Data:</span>
                                 <span>${dataFormatada}</span>
@@ -556,6 +995,11 @@
                                 <p class="crmv">CRMV-MA 2275</p>
                             </div>
                         </div>
+                        
+                        <div class="footer">
+                            <p>Av. Getúlio Vargas 2128, Imperatriz - MA | (99) 99183-1725</p>
+                            <p>olimpionvedvet@gmail.com | @olimpiovet</p>
+                        </div>
                     </body>
                     </html>
                 `;
@@ -563,41 +1007,46 @@
                 return conteudo;
             }
 
-            // Compartilhar receituário via WhatsApp
-            function compartilharReceituario() {
-                const nomeTutor = document.getElementById('nomeTutor').value;
-                const nomeAnimal = document.getElementById('nomeAnimal').value;
-                const prescricao = document.getElementById('prescricao').value;
-                const recomendacoes = document.getElementById('recomendacoes').value;
-                
-                let texto = `*Receituário Veterinário - ${nomeAnimal}*\n\n`;
-                texto += `*Tutor:* ${nomeTutor}\n`;
-                texto += `*Animal:* ${nomeAnimal}\n`;
-                
-                if (tipoReceita.value === 'especial') {
-                    texto += `*Espécie:* ${document.getElementById('especie').value}\n`;
-                    texto += `*Raça:* ${document.getElementById('raca').value}\n`;
-                    texto += `*Peso:* ${document.getElementById('peso').value}\n`;
-                    texto += `*Idade:* ${document.getElementById('idade').value}\n\n`;
+            // Compartilhar receituário
+            async function compartilharReceituario() {
+                try {
+                    const nomeTutor = document.getElementById('nomeTutor').value;
+                    const nomeAnimal = document.getElementById('nomeAnimal').value;
+                    const prescricao = document.getElementById('prescricao').value;
+                    const recomendacoes = document.getElementById('recomendacoes').value;
+                    
+                    let texto = `*Receituário Veterinário - ${nomeAnimal}*\n\n`;
+                    texto += `*Tutor:* ${nomeTutor}\n`;
+                    texto += `*Animal:* ${nomeAnimal}\n`;
+                    
+                    if (tipoReceita.value === 'especial') {
+                        texto += `*Espécie:* ${document.getElementById('especie').value}\n`;
+                        texto += `*Raça:* ${document.getElementById('raca').value}\n`;
+                        texto += `*Peso:* ${document.getElementById('peso').value}\n`;
+                        texto += `*Idade:* ${document.getElementById('idade').value}\n\n`;
+                    }
+                    
+                    texto += `*Prescrição:*\n${prescricao}\n\n`;
+                    texto += `*Recomendações:*\n${recomendacoes || 'Nenhuma recomendação adicional'}\n\n`;
+                    texto += `_Gevaelsom de Oliveira Olimpio_\n_CRMV-MA 2275_`;
+                    
+                    if (navigator.share) {
+                        await navigator.share({
+                            title: `Receituário - ${nomeAnimal}`,
+                            text: texto
+                        });
+                    } else {
+                        // Fallback para WhatsApp
+                        const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(texto)}`;
+                        window.open(whatsappUrl, '_blank');
+                    }
+                } catch (error) {
+                    console.error('Erro ao compartilhar:', error);
                 }
-                
-                texto += `*Prescrição:*\n${prescricao}\n\n`;
-                texto += `*Recomendações:*\n${recomendacoes || 'Nenhuma recomendação adicional'}\n\n`;
-                texto += `_Gevaelsom de Oliveira Olimpio_\n_CRMV-MA 2275_`;
-                
-                const url = `https://wa.me/?text=${encodeURIComponent(texto)}`;
-                window.open(url, '_blank');
             }
 
-            // Adicionar botão de compartilhamento
-            const formFooter = document.querySelector('.form-footer');
-            const shareBtn = document.createElement('button');
-            shareBtn.className = 'submit-btn';
-            shareBtn.style.marginLeft = '10px';
-            shareBtn.style.backgroundColor = '#25D366';
-            shareBtn.innerHTML = '<i class="fas fa-share-alt"></i> Compartilhar';
-            shareBtn.onclick = compartilharReceituario;
-            formFooter.appendChild(shareBtn);
+            // Evento de compartilhamento
+            btnShare.addEventListener('click', compartilharReceituario);
 
             // Gerar receituário para impressão
             receituarioForm.addEventListener('submit', function(e) {
@@ -623,10 +1072,12 @@
                 toggleCamposEspeciais();
                 btnSimples.classList.add('active');
                 btnEspecial.classList.remove('active');
+                btnShare.disabled = true;
             });
 
             // Inicializar
             toggleCamposEspeciais();
+            toggleShareButton();
         });
     </script>
 </body>
