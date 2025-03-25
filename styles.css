@@ -1,0 +1,114 @@
+/* Estilos para o menu de prescrições */
+.prescricao-dropdown {
+    position: relative;
+    margin-bottom: 1rem;
+    width: 100%;
+}
+
+.dropdown-btn {
+    background-color: #2a5c8d;
+    color: white;
+    padding: 0.7rem 1rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+    width: 100%;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.dropdown-btn:hover {
+    background-color: #4a8cbf;
+}
+
+.dropdown-content {
+    display: none;
+    position: relative;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    width: 100%;
+    margin-top: 0.5rem;
+    max-height: 300px;
+    overflow-y: auto;
+    border: 1px solid #eee;
+    z-index: 1000;
+}
+
+.dropdown-content.show {
+    display: block;
+}
+
+.dropdown-category {
+    border-bottom: 1px solid #eee;
+}
+
+.dropdown-category:last-child {
+    border-bottom: none;
+}
+
+.category-btn {
+    background-color: #f8f9fa;
+    color: #343a40;
+    padding: 0.8rem 1rem;
+    border: none;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 500;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.category-btn:hover {
+    background-color: #e9ecef;
+}
+
+.category-content {
+    display: none;
+    padding: 0.5rem;
+    background-color: white;
+}
+
+.category-content.show {
+    display: block;
+}
+
+.med-btn {
+    background-color: white;
+    color: #343a40;
+    padding: 0.7rem 1rem;
+    border: none;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: all 0.3s ease;
+    border-radius: 4px;
+    margin-bottom: 0.3rem;
+    display: block;
+}
+
+.med-btn:hover {
+    background-color: #f8f9fa;
+    color: #2a5c8d;
+}
+
+.med-btn:last-child {
+    margin-bottom: 0;
+}
+
+/* Melhorias para a área de texto */
+#prescricao {
+    min-height: 150px;
+    font-family: 'Courier New', Courier, monospace;
+    line-height: 1.5;
+    white-space: pre-wrap;
+}
